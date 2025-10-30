@@ -14,9 +14,10 @@ FROM (ksiazki k inner join egzemplarze e on k.isbn=e.isbn) inner join wypozyczen
 WHERE datazwrotu IS NOT NULL
 
 Zadanie 8
-SELECT tytul, Count(*)
+SELECT TOP 1 tytul, Count(*)
 FROM (ksiazki k inner join egzemplarze e ON k.isbn=e.isbn) Inner join wypozyczenia w ON e.sygnatura=w.sygnatura
 Group by tytul
+Order by Count(*) DESC
 
 Zadanie 9
 SELECT d.dziedzina, Count(*)
@@ -27,4 +28,5 @@ Having Count(*) = 0
 Zadanie 10
 SELECT nazwajezyka, d.dziedzina, Count(*)
 FROM (ksiazki k inner join jezyki j on j.id_jezyka=k.jezykorg) INNER join dziedziny d on k.dziedzina=d.id_dziedziny
+
 Group by nazwajezyka, d.dziedzina

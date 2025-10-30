@@ -1,0 +1,30 @@
+Zadanie 5
+SELECT ImiePracownika, NazwiskoPracownika, Count(*)
+FROM wypozyczenia w inner join pracownicy p ON w.pracownik=p.IdPracownika
+Group by ImiePracownika, NazwiskoPracownika
+
+Zadanie 6
+SELECT tytul
+FROM ((ksiazki k inner join egzemplarze e ON k.isbn=e.isbn) INNER join wypozyczenia w ON e.sygnatura=w.sygnatura) INNER join Pracownicy p ON w.pracownik=p.IdPracownika
+WHERE NazwiskoPracownika = "Banach"
+
+Zadanie 7
+SELECT tytul, sygnatura
+FROM (ksiazki k inner join egzemplarze e on k.isbn=e.isbn) inner join wypozyczenia w ON e.sygnatura=w.sygnatura
+WHERE datazwrotu IS NOT NULL
+
+Zadanie 8
+SELECT tytul, Count(*)
+FROM (ksiazki k inner join egzemplarze e ON k.isbn=e.isbn) Inner join wypozyczenia w ON e.sygnatura=w.sygnatura
+Group by tytul
+
+Zadanie 9
+SELECT d.dziedzina, Count(*)
+FROM dziedziny d inner join ksiazki k on d.id_dziedziny=k.dziedzina
+GROUP by d.dziedzina
+Having Count(*) = 0
+
+Zadanie 10
+SELECT nazwajezyka, d.dziedzina, Count(*)
+FROM (ksiazki k inner join jezyki j on j.id_jezyka=k.jezykorg) INNER join dziedziny d on k.dziedzina=d.id_dziedziny
+Group by nazwajezyka, d.dziedzina
